@@ -28,6 +28,7 @@ const ContentCount = ({ count, platform }) => {
     <h2 className="text-1xl sm:text-2xl font-bold text-white">
       {count} {displayText}
     </h2>
+
   );
 };
 
