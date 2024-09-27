@@ -57,7 +57,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 p-4 text-gray-200 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gray-800 p-4 text-gray-200 flex flex-col items-center justify-center">
       {/* Komunikat ładowania */}
       {loading ? (
         <p className="text-lg text-gray-400">Ładowanie linków z YouTube i Rumble...</p>
