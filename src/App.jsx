@@ -138,7 +138,7 @@ function App() {
                 : podcastImage; // Użyj lokalnego podcastu
 
             return (
-              <div key={index} className="bg-gray-800 shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
+              <div key={index} className=" shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
                 <>
                   <a href={video.link} target="_blank" rel="noopener noreferrer">
                     <img 
