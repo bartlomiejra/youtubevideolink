@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import rumbleVideosData from './assets/data/rumble_videos.json';
 import youtubeVideosData from './assets/data/youtube_videos.json';
 import podcastsData from './assets/data/podcasts.json';
-import VideoCount from './VideoCount';
 import rumbleLogo from './assets/rumble.png';
 import podcastImage from './assets/podcast.png'; // Import the podcast image
 import './index.css';
+import Header from './Header';
+import ContentCount from './ContentCount';
 
 function App() {
   const [videos, setVideos] = useState([]);
@@ -13,7 +14,7 @@ function App() {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [selectedVideoId, setSelectedVideoId] = useState('');
   const [selectedPlatform, setSelectedPlatform] = useState('youtube'); // Domyślnie ustawione na YouTube
-  const [loading, setLoading] = useState(false); // Stan ładowania
+  const [loading, setLoading] = useState(true); // Ustawiono na true na początku
 
   useEffect(() => {
     // Łączymy dane z wszystkich plików
@@ -23,26 +24,16 @@ function App() {
       ...podcastsData,
     ];
     setVideos(combinedVideos);
+    setLoading(false); // Ustaw loading na false po załadowaniu
   }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-      setLoading(false); // Ustaw loading na false po opóźnieniu
     }, 2000); // 2-sekundowe opóźnienie
 
-    setLoading(true); // Ustaw loading na true przed rozpoczęciem opóźnienia
-
-    return () => {
-      clearTimeout(timer); // Wyczyść timeout, gdy komponent zostanie odmontowany lub gdy searchTerm się zmienia
-      setLoading(false); // Ustaw loading na false, jeśli timer jest czyszczony
-    };
+    return () => clearTimeout(timer); // Wyczyść timeout, gdy komponent zostanie odmontowany lub gdy searchTerm się zmienia
   }, [searchTerm]);
-
-  useEffect(() => {
-    // Ustaw loading na false po wybraniu platformy
-    setLoading(false);
-  }, [selectedPlatform]);
 
   const getVideoId = (link) => {
     try {
@@ -72,15 +63,15 @@ function App() {
   });
 
   const handlePlatformChange = (platform) => {
-    setLoading(true);
+    setLoading(true); // Ustaw loading na true przy zmianie platformy
     setSelectedPlatform(platform);
     setTimeout(() => setLoading(false), 1000); // Dodaj krótki czas ładowania przy zmianie platformy
   };
 
   return (
     <div className="min-h-screen bg-gray-180000 p-4 text-gray-200 flex flex-col items-center justify-center">
-      {/* Komponent VideoCount wyświetlany po załadowaniu */}
-      <VideoCount count={filteredVideos.length} platform={selectedPlatform} />
+      {/* Komponent Header */}
+      <Header />
 
       {/* Przyciski do wyboru platformy */}
       <div className="mb-4 flex justify-center">
@@ -108,64 +99,78 @@ function App() {
       <div className="mb-4 flex justify-center">
         <input
           type="text"
-          placeholder="Szukaj filmów..."
+          placeholder="Szukaj audiobooków..."
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
-          className="w-full md:w-2/2 lg:w-2/3 p-3 border border-gray-700 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full md:w-2/2 lg:w-4/4 p-3 border border-gray-700 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center"
         />
       </div>
 
-      {/* Siatka filmów */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow no-underline  ">
-        {loading && (
-          <div className="col-span-full text-center py-6">
-            <p className="text-lg text-gray-400">Ładowanie...</p>
-          </div>
-        )}
+      {/* Komunikat ładowania */}
+      {loading && (
+        <div className="col-span-full text-center py-6">
+          <p className="text-lg text-gray-400">Ładowanie...</p>
+        </div>
+      )}
 
-        {!loading && filteredVideos.length > 0 ? (
-          filteredVideos.map((video, index) => {
-            const videoId = getVideoId(video.link);
-            const isYouTube = video.platform === 'youtube';
-            const isRumble = video.platform === 'rumble';
-            const isPodcast = video.platform === 'podcast';
-            const thumbnailUrl = isYouTube 
-              ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` 
-              : isRumble 
-                ? rumbleLogo // Użyj lokalnego logo Rumble
-                : podcastImage; // Użyj lokalnego podcastu
+      {/* Komponent ContentCount wyświetlany po załadowaniu */}
+      {!loading && (
+        <>
+          <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
+          {/* Siatka filmów */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow no-underline">
+            {filteredVideos.length > 0 ? (
+              filteredVideos.map((video, index) => {
+                const videoId = getVideoId(video.link);
+                const isYouTube = video.platform === 'youtube';
+                const isRumble = video.platform === 'rumble';
+                const isPodcast = video.platform === 'podcast';
+                const thumbnailUrl = isYouTube 
+                  ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` 
+                  : isRumble 
+                    ? rumbleLogo // Użyj lokalnego logo Rumble
+                    : podcastImage; // Użyj lokalnego podcastu
 
-            return (
-              <div key={index} className=" shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
-                <>
-                  <a href={video.link} target="_blank" rel="noopener noreferrer">
-                    <img 
-                      src={thumbnailUrl} 
-                      alt={video.title} 
-                      className="w-full h-48 object-cover cursor-pointer" 
-                    />
-                  </a>
-                  <div className="p-4">
-                    <h2 className="text-xl font-semibold mb-2 text-gray-200 no-underline"> {/* Zmieniono kolor na jasny */}
-                      <a className="text-gray-200 " href={video.link} target="_blank" rel="noopener noreferrer">
-                        {video.title}
+                return (
+                  <div key={index} className="shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
+                    <>
+                      <a href={video.link} target="_blank" rel="noopener noreferrer">
+                        <img 
+                          src={thumbnailUrl} 
+                          alt={video.title} 
+                          className="w-full h-48 object-cover cursor-pointer" 
+                        />
                       </a>
-                    </h2>
+                      <div className="p-4">
+                        <h2 className="text-xl font-semibold mb-2 text-gray-200 no-underline"> {/* Zmieniono kolor na jasny */}
+                          <a className="text-gray-200" href={video.link} target="_blank" rel="noopener noreferrer">
+                            {video.title}
+                          </a>
+                        </h2>
+                      </div>
+                    </>
                   </div>
-                </>
+                );
+              })
+            ) : (
+              <div className="col-span-full text-center py-6">
+                <p className="text-lg text-gray-500">Brak wyników do wyświetlenia.</p>
               </div>
-            );
-          })
-        ) : (
-          !loading && (
-            <div className="col-span-full text-center py-6">
-              <p className="text-lg text-gray-500">Brak wyników do wyświetlenia.</p>
-            </div>
-          )
-        )}
-      </div>
+            )}
+          </div>
+        </>
+      )}
+
+      {/* Placeholder do siatki filmów w przypadku ładowania */}
+      {loading && (
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-8 flex-grow no-underline">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div key={index} className="bg-gray-700 h-48 rounded-lg animate-pulse"></div> // Placeholder
+          ))}
+        </div>
+      )}
 
       {/* Odtwarzacz na dole ekranu */}
       {selectedVideoId && (
