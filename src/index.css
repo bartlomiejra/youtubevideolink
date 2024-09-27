@@ -14,12 +14,22 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    width: 100%;   /* Ustawia szerokość root na 100% */
-
+  width: 100%; /* Ustawia szerokość root na 100% */
 }
 
 body {
-  @apply  items-center min-h-screen bg-gray-900 text-gray-200;
+  @apply items-center min-h-screen bg-gray-900 text-gray-200;
+}
+
+/* Mniejsze czcionki na urządzeniach mobilnych */
+@media (max-width: 640px) {
+  :root {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  body {
+    @apply text-sm; /* Mniejszy rozmiar tekstu */
+  }
 }
 
 a {

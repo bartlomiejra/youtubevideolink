@@ -3,18 +3,18 @@
   "name": "Bart Audiobooki🔴🔵🟣🟢",
   "icons": [
     {
-      "src": "logo192.png",
+      "src": "assets/bart.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "logo512.png",
+      "src": "assets/bart.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "favicon.ico",
-      "sizes": "16x16 32x32 48x48",
+      "src": "assets/favicon.ico",
+      "sizes": "16x16 32x32 ",
       "type": "image/x-icon"
     }
   ],

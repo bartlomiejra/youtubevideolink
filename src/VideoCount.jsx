@@ -24,12 +24,12 @@ const VideoCount = ({ count, platform }) => {
       : 'filmy';
 
   return (
-    <div className="p-6  text-center mb-4">
-      <h1 className="text-4xl font-extrabold text-red-700 mb-2">Biblioteka Bart Audiobooki</h1>
-      <h2 className="text-3xl font-bold text-white"> 
+    <div className="p-6 text-center mb-4">
+      <h1 className="text-3xl sm:text-4xl font-extrabold text-red-700 mb-2">Biblioteka Bart Audiobooki</h1>
+      <h2 className="text-2xl sm:text-3xl font-bold text-white"> 
         {count} {displayText} 
       </h2>
-      <p className="text-gray-400 text-sm">Przeglądaj audiobooki z kanałów Bart Audiobooki na YouTube oraz Rumble!</p>
+      <p className="text-gray-400 text-sm sm:text-base">Przeglądaj audiobooki z kanałów Bart Audiobooki na YouTube oraz Rumble!</p>
     </div>
   );
 };
