@@ -1,0 +1,25 @@
+{
+  "short_name": "App",
+  "name": "Moja Aplikacja React",
+  "icons": [
+    {
+      "src": "logo192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1f2937", // Ciemny szary kolor motywu
+  "background_color": "#111827" // Bardzo ciemny szary kolor tła
+}
