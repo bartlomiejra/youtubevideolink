@@ -4,14 +4,8 @@ import React from 'react';
 const SearchBar = ({ searchTerm, setSearchTerm, handleSortNewest, handleSortRandom }) => {
   return (
     <>
-   <h2 className="text-sm text-gray-400 text-align-center">
-    Wybierz interesującą Cię platformę: 
-    <span className="text-red-500"> YouTube, </span>
-    <span className="text-green-500">Rumble</span>, 
-    <span className="text-blue-500"> podcasty</span>. 
-    Wpisz tytuł audiobooka, serię książek lub nazwisko autora, aby szybko znaleźć interesujące Cię pozycje w naszej kolekcji.
-</h2>
-    <div className="mb-4 p-4 flex items-center justify-center">
+   
+    <div className="mb-4 p-2  flex items-center justify-center">
       {/* Pasek wyszukiwania */}
       <button
         onClick={handleSortNewest}
@@ -35,6 +29,13 @@ const SearchBar = ({ searchTerm, setSearchTerm, handleSortNewest, handleSortRand
         🎲 Losuj
       </button>
     </div>
+    <h2 className="text-m  text-gray-400 text-align-center">
+    Wybierz interesującą Cię platformę: 
+    <span className="text-red-500"> YouTube, </span>
+    <span className="text-green-500">Rumble</span>, 
+    <span className="text-blue-500"> podcasty</span>. 
+    Wpisz tytuł audiobooka, serię książek lub nazwisko autora, aby szybko znaleźć interesujące Cię pozycje w naszej kolekcji.
+</h2>
   </>
   );
 };

@@ -4,19 +4,18 @@ import './KoFiWidget.css';
 
 const KoFiWidget = () => {
   return (
-   <a 
-    href="https://ko-fi.com/bartaudio" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className="flex justify-center items-center p-2" // Centering the button
->
-    <img 
-        src={kofiLogo} 
-        alt="Ko-fi" 
-        className="w-full h-auto max-w-[150px]" // Responsive image
-    />
-</a>
-
+    <a 
+      href="https://ko-fi.com/bartaudio" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="fixed bottom-4 right-4 flex justify-center items-center p-2 z-50" // Sticky positioning
+    >
+      <img 
+          src={kofiLogo} 
+          alt="Ko-fi" 
+          className="w-full h-auto max-w-[150px]" // Responsive image
+      />
+    </a>
   );
 }
 
