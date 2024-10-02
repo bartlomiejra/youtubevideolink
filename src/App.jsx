@@ -1,3 +1,4 @@
+// App.js
 import React, { useEffect, useState } from 'react';
 import rumbleVideosData from './assets/data/rumble_videos.json';
 import youtubeVideosData from './assets/data/youtube_videos.json';
@@ -5,14 +6,18 @@ import podcastsData from './assets/data/podcasts.json';
 import rumbleLogo from './assets/rumble.png';
 import podcastImage from './assets/podcast.png'; // Import the podcast image
 import './index.css';
-import Header from './Header';
+import Header from './components/Header/Header'; // Importuj nowy komponent Header
 import ContentCount from './ContentCount';
+import Footer from './components/Footer/Footer';
+import SearchBar from './components/SearchBar/SearchBar'; // Importuj nowy komponent
+import KoFiWidget from './components/Widgets/KoFiWidget'; // Importuj nowy komponent
+
 
 function App() {
   const [videos, setVideos] = useState([]);
+  const [initialVideos, setInitialVideos] = useState([]); // Tablica do przechowywania pierwotnych danych
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-  const [selectedVideoId, setSelectedVideoId] = useState('');
   const [selectedPlatform, setSelectedPlatform] = useState('youtube'); // Domyślnie ustawione na YouTube
   const [loading, setLoading] = useState(true); // Ustawiono na true na początku
 
@@ -24,9 +29,8 @@ function App() {
       ...podcastsData,
     ];
 
-    const shuffledVideos = combinedVideos.sort(() => Math.random() - 0.5);
-
     setVideos(combinedVideos);
+    setInitialVideos(combinedVideos); // Ustaw pierwotne dane
     setLoading(false); // Ustaw loading na false po załadowaniu
   }, []);
 
@@ -61,9 +65,27 @@ function App() {
   // Filtrowanie filmów na podstawie wyszukiwania i wybranej platformy
   const filteredVideos = videos.filter(video => {
     const matchesSearchTerm = video.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
-    const matchesPlatform = selectedPlatform === 'all' || video.platform === selectedPlatform;
+    const matchesPlatform = video.platform === selectedPlatform;
     return matchesSearchTerm && matchesPlatform;
   });
+
+  // Funkcja do konwersji daty z formatu DD.MM.YYYY na obiekt Date
+  const parseDate = (dateString) => {
+    const [day, month, year] = dateString.split('.').map(Number);
+    return new Date(year, month - 1, day); // Miesiące w JavaScript zaczynają się od 0
+  };
+
+  const handleSortNewest = () => {
+    const sortedVideos = [...filteredVideos].sort((a, b) => {
+      return parseDate(b.date) - parseDate(a.date); // Sortowanie według daty
+    });
+    setVideos(sortedVideos); // Ustaw posortowane filmy
+  };
+
+  const handleSortRandom = () => {
+    const randomVideos = [...initialVideos].sort(() => Math.random() - 0.5); // Losowe sortowanie z pierwotnej tablicy
+    setVideos(randomVideos); // Ustaw losowe filmy
+  };
 
   const handlePlatformChange = (platform) => {
     setLoading(true); // Ustaw loading na true przy zmianie platformy
@@ -72,60 +94,38 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-180000 p-4 text-gray-200 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gray-180000 text-gray-200 flex flex-col items-center">
       {/* Komponent Header */}
-      <Header />
+      <Header 
+        selectedPlatform={selectedPlatform} 
+        handlePlatformChange={handlePlatformChange} 
+      />
+            {/* <KoFiWidget /> Dodaj komponent Ko-fi */}
 
-      {/* Przyciski do wyboru platformy */}
-      <div className="mb-4 flex justify-center">
-        <button
-          onClick={() => handlePlatformChange('youtube')}
-          className={`mx-2 p-2 rounded ${selectedPlatform === 'youtube' ? 'bg-red-600 text-white' : 'bg-gray-700 text-gray-300'}`}
-        >
-          YouTube
-        </button>
-        <button
-          onClick={() => handlePlatformChange('rumble')}
-          className={`mx-2 p-2 rounded ${selectedPlatform === 'rumble' ? 'bg-green-600 text-white' : 'bg-gray-700 text-gray-300'}`}
-        >
-          Rumble
-        </button>
-        <button
-          onClick={() => handlePlatformChange('podcast')}
-          className={`mx-2 p-2 rounded ${selectedPlatform === 'podcast' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'}`}
-        >
-          Podcast
-        </button>
-      </div>
 
-      {/* Pole wyszukiwania */}
-      <div className="mb-4 flex justify-center">
-        <input
-          type="text"
-          placeholder="Szukaj audiobooków..."
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-          className="w-full md:w-2/2 lg:w-4/4 p-3 border border-gray-700 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center"
-        />
-      </div>
+      {/* Komponent SearchBar */}
+      <SearchBar 
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        handleSortNewest={handleSortNewest}
+        handleSortRandom={handleSortRandom}
+      />
 
       {/* Komunikat ładowania */}
-      {loading && (
-        <div className="col-span-full text-center py-6">
-          <p className="text-lg text-gray-400">Ładowanie...</p>
-        </div>
-      )}
+     {loading && (
+    <div className="col-span-full text-center py-6 h-screen">
+        <p className="text-lg text-gray-400">Ładowanie...</p>
+    </div>
+)}
+
 
       {/* Komponent ContentCount wyświetlany po załadowaniu */}
       {!loading && (
         <>
           <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
+          
           {/* Siatka filmów */}
-          {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow no-underline"> */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow no-underline mt-4">
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow no-underline mt-4">
             {filteredVideos.length > 0 ? (
               filteredVideos.map((video, index) => {
                 const videoId = getVideoId(video.link);
@@ -134,13 +134,12 @@ function App() {
                 const isPodcast = video.platform === 'podcast';
                 const thumbnailUrl = isYouTube 
                   ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` 
-                  
                   : isRumble 
                     ? rumbleLogo // Użyj lokalnego logo Rumble
                     : podcastImage; // Użyj lokalnego podcastu
 
                 return (
-                  <div key={index} className="shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
+                  <div key={index} className=" bg-gray-950 shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
                     <>
                       <a href={video.link} target="_blank" rel="noopener noreferrer">
                         <img 
@@ -150,52 +149,25 @@ function App() {
                         />
                       </a>
                       <div className="p-4">
-                        <h2 className="text-xl font-semibold mb-2 text-gray-200 no-underline"> {/* Zmieniono kolor na jasny */}
-                          <a className="text-gray-200" href={video.link} target="_blank" rel="noopener noreferrer">
-                            {video.title}
-                          </a>
-                        <div className="text-l text-right " >{video.date}</div>
-                        </h2>
+                        <h2 className="text-xl font-semibold mb-2 text-gray-200 no-underline">{video.title}</h2>
+                        <p className="text-gray-400">{video.description}</p>
+                        {/* Wyświetlenie daty pod tytułem */}
+                        <p className="text-gray-500 mt-2">{video.date}</p>
                       </div>
                     </>
                   </div>
                 );
               })
             ) : (
-              <div className="col-span-full text-center py-6">
-                <p className="text-lg text-gray-500">Brak wyników do wyświetlenia.</p>
-              </div>
+              <p className="col-span-full text-center text-gray-400">Brak wyników do wyświetlenia.</p>
             )}
           </div>
         </>
       )}
+      {/* <KoFiframe />  */}
+      <KoFiWidget />
 
-      {/* Placeholder do siatki filmów w przypadku ładowania */}
-      {loading && (
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-8 flex-grow no-underline">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <div key={index} className="bg-gray-700 h-48 rounded-lg animate-pulse"></div> // Placeholder
-          ))}
-        </div>
-      )}
-
-      {/* Odtwarzacz na dole ekranu */}
-      {selectedVideoId && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-800 p-4">
-          <div className="flex justify-center">
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src={`https://www.youtube.com/embed/${selectedVideoId}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      )}
+      <Footer />
     </div>
   );
 }

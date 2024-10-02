@@ -1,0 +1,14 @@
+.kofi-button {
+  position: fixed;
+  bottom: 20px; /* Odległość od dołu */
+  right: 20px; /* Odległość od prawej */
+  z-index: 1000; /* Zwiększamy z-index, aby był na wierzchu */
+  background-color: transparent; /* Tło przezroczyste */
+  border: none; /* Bez obramowania */
+  cursor: pointer; /* Zmiana kursora na wskaźnik */
+  transition: transform 0.3s; /* Animacja dla efektu hover */
+}
+
+.kofi-button:hover {
+  transform: scale(1.1); /* Powiększenie przycisku po najechaniu */
+}

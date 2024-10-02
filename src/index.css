@@ -43,7 +43,7 @@ button {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: transparent;
   }
   a:hover {
     color: #747bff;
@@ -51,4 +51,15 @@ button {
   button {
     background-color: #f9f9f9;
   }
+}
+/* index.css */
+.kofi-widget {
+  position: fixed; /* Ustawia widget jako stały */
+  bottom: 20px; /* Ustawia odległość od dolnej krawędzi */
+  right: 20px; /* Ustawia odległość od prawej krawędzi */
+  z-index: 9999; /* Ustawia najwyższy z-index */
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px; /* Zaokrąglenie rogów */
+  padding: 10px; /* Padding wewnętrzny */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Cień dla lepszego efektu wizualnego */
 }
