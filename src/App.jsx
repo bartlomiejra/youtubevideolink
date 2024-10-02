@@ -134,6 +134,7 @@ function App() {
                 const isPodcast = video.platform === 'podcast';
                 const thumbnailUrl = isYouTube 
                   ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` 
+                  
                   : isRumble 
                     ? rumbleLogo // Użyj lokalnego logo Rumble
                     : podcastImage; // Użyj lokalnego podcastu
@@ -153,6 +154,7 @@ function App() {
                           <a className="text-gray-200" href={video.link} target="_blank" rel="noopener noreferrer">
                             {video.title}
                           </a>
+                        <div className="text-l text-right " >{video.date}</div>
                         </h2>
                       </div>
                     </>
