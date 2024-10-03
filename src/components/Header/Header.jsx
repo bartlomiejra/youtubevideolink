@@ -6,8 +6,8 @@ const Header = ({ selectedPlatform, handlePlatformChange }) => {
   return (
     <header className="bg-neutral-900	sticky top-0 z-50 bg-brown-900 text-gray-200 w-full flex items-center justify-between p-4 shadow-lg">
       <div className="flex items-center">
-        <img src={logo} alt="Logo" className="h-12 w-auto mr-4" />
-        <h1 className="text-xl font-bold">Bart audiobooki</h1>
+        <img src={logo} alt="Logo" className="h-8 w-auto " />
+        <h1 className="text-m  font-bold">Bart audiobooki</h1>
       </div>
       {/* Przyciski do wyboru platformy */}
       <div className="flex justify-center space-x-4">
