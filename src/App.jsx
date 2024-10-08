@@ -68,7 +68,7 @@ function App() {
 
   // Użycie useMemo dla wydajności
   const filteredVideos = useMemo(() => {
-    return videos // Użyj stanu videos zamiast initialVideos
+    return videos
       .filter(video => {
         const matchesSearchTerm = video.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
         const matchesPlatform = video.platform === selectedPlatform;
@@ -112,12 +112,14 @@ function App() {
     const videoId = getVideoId(video.link);
     const isYouTube = video.platform === 'youtube';
     const isRumble = video.platform === 'rumble';
-    const isPodcast = video.platform === 'podcast';
+    const isPodcast = video.platform === 'playlist'; // Zmieniono na 'playlist'
     const thumbnailUrl = isYouTube 
       ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` 
       : isRumble 
         ? rumbleLogo 
-        : podcastImage;
+        : (video.image_url || podcastImage); // Użyj video.image_url lub podcastImage
+
+        
 
     return (
       <div key={index} className="bg-gray-950 shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
@@ -131,7 +133,9 @@ function App() {
           </a>
           <div className="p-4">
             <h2 className="text-xl font-semibold mb-2 text-gray-200 no-underline">{video.title}</h2>
-            <p className="text-gray-400">{video.description}</p>
+            {video.description && (
+              <p className="text-gray-400">{video.description}</p>
+            )}
             <p className="text-red-900 mt-2">{video.date}</p>
           </div>
         </>

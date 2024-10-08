@@ -32,14 +32,14 @@ const Header = ({ selectedPlatform, handlePlatformChange }) => {
           Rumble
         </button>
         <button
-          onClick={() => handlePlatformChange('podcast')}
+          onClick={() => handlePlatformChange('playlist')}
           className={`mx-2 p-2 rounded transition duration-200 ${
-            selectedPlatform === 'podcast'
+            selectedPlatform === 'playlist'
               ? 'bg-blue-600 text-white border border-blue-600'
               : 'text-blue-600 hover:text-blue-800 hover:bg-blue-200'
           }`}
         >
-          Podcast
+          Playlisty
         </button>
       </div>
     </header>
