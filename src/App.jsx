@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import rumbleVideosData from './assets/data/rumble_videos.json';
+import authorsData from './assets/data/authors.json'; // Importuj dane autorów
+
 import youtubeVideosData from './assets/data/youtube_videos.json';
 import podcastsData from './assets/data/podcasts.json';
 import rumbleLogo from './assets/rumble.png';
@@ -16,9 +18,15 @@ function App() {
   const [initialVideos, setInitialVideos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-  const [selectedPlatform, setSelectedPlatform] = useState('youtube'); // Domyślnie ustawione na YouTube
+  const [selectedPlatform, setSelectedPlatform] = useState('youtube');
   const [loading, setLoading] = useState(true);
-  const [sortNewest, setSortNewest] = useState(false);
+  const [sortNewest, setSortNewest] = useState(true);
+  const [authors, setAuthors] = useState([]); // Stan do przechowywania autorów
+
+
+   useEffect(() => {
+    setAuthors(authorsData);
+  }, []);
 
   // Funkcja do konwersji daty z formatu DD.MM.YYYY na obiekt Date
   const parseDate = (dateString) => {
@@ -36,6 +44,15 @@ function App() {
     setVideos(combinedVideos);
     setInitialVideos(combinedVideos);
     setLoading(false);
+
+    // Przygotowanie listy autorów
+    const authorSet = new Set();
+    combinedVideos.forEach(video => {
+      if (video.author) {
+        authorSet.add(video.author);
+      }
+    });
+    setAuthors(Array.from(authorSet)); // Przechowuj unikalnych autorów
   }, []);
 
   useEffect(() => {
@@ -90,21 +107,21 @@ function App() {
 
   const handleSortRandom = () => {
     const randomVideos = [...initialVideos].sort(() => Math.random() - 0.5);
-    setVideos(randomVideos); // Ustaw losowo posortowane wideo
-    setSortNewest(false); // Resetowanie sortowania
+    setVideos(randomVideos);
+    setSortNewest(false);
   };
 
   const handlePlatformChange = (platform) => {
     setLoading(true);
     setSelectedPlatform(platform);
-    setSortNewest(false); // Resetowanie sortowania na false przy zmianie platformy
+    setSortNewest(false);
     const combinedVideos = [
       ...rumbleVideosData,
       ...youtubeVideosData,
       ...podcastsData,
     ];
-    setInitialVideos(combinedVideos); // Ustawia wideo na zaktualizowane
-    setVideos(combinedVideos); // Ustawia wideo na zaktualizowane
+    setInitialVideos(combinedVideos);
+    setVideos(combinedVideos);
     setTimeout(() => setLoading(false), 1000);
   };
 
@@ -112,14 +129,12 @@ function App() {
     const videoId = getVideoId(video.link);
     const isYouTube = video.platform === 'youtube';
     const isRumble = video.platform === 'rumble';
-    const isPodcast = video.platform === 'playlist'; // Zmieniono na 'playlist'
+    const isPodcast = video.platform === 'playlist';
     const thumbnailUrl = isYouTube 
       ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` 
       : isRumble 
         ? rumbleLogo 
-        : (video.image_url || podcastImage); // Użyj video.image_url lub podcastImage
-
-        
+        : (video.image_url || podcastImage);
 
     return (
       <div key={index} className="bg-gray-950 shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
@@ -143,6 +158,19 @@ function App() {
     );
   };
 
+  const renderAuthors = () => (
+    <div className="mb-4">
+      <h3 className="text-xl font-semibold mb-2 text-gray-200">Autorzy:</h3>
+      <ul>
+        {authors.map((author, index) => (
+          <li key={index} className="text-gray-400">
+            {author.name} ({author.video_count} wideo)
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-gray-180000 text-gray-200 flex flex-col items-center">
       <Header 
@@ -156,6 +184,7 @@ function App() {
         handleSortRandom={handleSortRandom}
       />
 
+{renderAuthors()} {/* Wyświetl listę autorów */}
       {loading && (
         <div className="col-span-full text-center py-6 h-screen">
           <p className="text-lg text-gray-400">Ładowanie...</p>
@@ -164,6 +193,7 @@ function App() {
 
       {!loading && (
         <>
+          
           <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow no-underline mt-4">

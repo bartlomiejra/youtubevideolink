@@ -2,12 +2,12 @@
 import React from 'react';
 import logo from '../../assets/logo.png'; // Upewnij się, że ścieżka do logo jest poprawna
 
-const Header = ({ selectedPlatform, handlePlatformChange }) => {
+const Header = ({ selectedPlatform, handlePlatformChange, onToggleAuthors }) => {
   return (
-    <header className="bg-neutral-900	sticky top-0 z-50 bg-brown-900 text-gray-200 w-full flex items-center justify-between p-4 shadow-lg">
+    <header className="bg-neutral-900 sticky top-0 z-50 bg-brown-900 text-gray-200 w-full flex items-center justify-between p-4 shadow-lg">
       <div className="flex items-center">
         <img src={logo} alt="Logo" className="h-8 w-auto " />
-        <h1 className="text-m  font-bold">Bart audiobooki</h1>
+        <h1 className="text-m font-bold">Bart audiobooki</h1>
       </div>
       {/* Przyciski do wyboru platformy */}
       <div className="flex justify-center space-x-4">
@@ -40,6 +40,14 @@ const Header = ({ selectedPlatform, handlePlatformChange }) => {
           }`}
         >
           Playlisty
+        </button>
+
+        {/* Przycisk do pokazywania/ukrywania autorów */}
+        <button  disabled={true}        
+          onClick={onToggleAuthors}
+          className="mx-2 p-2 rounded bg-gray-700 text-white hover:bg-gray-600 transition duration-200"
+        >
+          Pokaż/Ukryj Listę autorów
         </button>
       </div>
     </header>
