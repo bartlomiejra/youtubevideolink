@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import rumbleVideosData from './assets/data/rumble_videos.json';
 import authorsData from './assets/data/authors.json'; // Importuj dane autorów
+import AuthorsList from './components/AuthorsList'; // Importuj komponent AuthorsList
 
 import youtubeVideosData from './assets/data/youtube_videos.json';
 import podcastsData from './assets/data/podcasts.json';
@@ -114,7 +115,7 @@ function App() {
   const handlePlatformChange = (platform) => {
     setLoading(true);
     setSelectedPlatform(platform);
-    setSortNewest(false);
+    setSortNewest(true);
     const combinedVideos = [
       ...rumbleVideosData,
       ...youtubeVideosData,
@@ -184,7 +185,6 @@ function App() {
         handleSortRandom={handleSortRandom}
       />
 
-{renderAuthors()} {/* Wyświetl listę autorów */}
       {loading && (
         <div className="col-span-full text-center py-6 h-screen">
           <p className="text-lg text-gray-400">Ładowanie...</p>
@@ -193,16 +193,24 @@ function App() {
 
       {!loading && (
         <>
-          
-          <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow no-underline mt-4">
-            {filteredVideos.length > 0 ? (
-              filteredVideos.map(renderVideo)
-            ) : (
-              <p className="col-span-full text-center text-gray-400">Brak wyników do wyświetlenia.</p>
-            )}
-          </div>
+     <div className="flex flex-col md:flex-row gap-4"> {/* Flexbox dla układu obok siebie */}
+  <div className="w-full md:w-1/4 bg-gray-900 p-4"> {/* Pasek autorów */}
+    <AuthorsList /> {/* Wyświetlenie listy autorów */}
+  </div>
+
+  <div className="flex-grow p-4"> {/* Kontener dla reszty */}
+    <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow mt-4 min-h-[200px]"> {/* Minimalna wysokość */}
+      {filteredVideos.length > 0 ? (
+        filteredVideos.map(renderVideo)
+      ) : (
+        <p className="col-span-full text-center text-gray-400">Brak wyników do wyświetlenia.</p>
+      )}
+    </div>
+  </div>
+</div>
+
         </>
       )}
 

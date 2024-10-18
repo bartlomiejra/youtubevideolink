@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 const AuthorFilter = ({ selectedAuthors, setSelectedAuthors }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [authors, setAuthors] = useState([]);
+  const [authorsList, setAuthorsList] = useState([]);
 
   // Wczytywanie autorów z pliku JSON
   useEffect(() => {
@@ -11,12 +12,14 @@ const AuthorFilter = ({ selectedAuthors, setSelectedAuthors }) => {
       const response = await fetch('/data/authors.json');
       const data = await response.json();
       setAuthors(data);
+      setAuthorsList(data);
     };
 
     fetchAuthors();
   }, []);
 
   const toggleDropdown = () => {
+  const toggle = () => setIsOpen(!isOpen);
     setIsOpen(!isOpen);
   };
 
@@ -29,7 +32,7 @@ const AuthorFilter = ({ selectedAuthors, setSelectedAuthors }) => {
   };
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left w-full"> {/* Ustaw szerokość na 100% */}
       <div>
         <button
           onClick={toggleDropdown}
@@ -41,9 +44,9 @@ const AuthorFilter = ({ selectedAuthors, setSelectedAuthors }) => {
           </svg>
         </button>
       </div>
-
+      
       {isOpen && (
-        <div className="absolute right-0 z-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="absolute right-0 z-10 mt-2 w-full max-h-full overflow-y-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"> {/* Ustaw szerokość na 100% i dodaj scroll */}
           <div className="py-1">
             {authors.map((author) => (
               <div key={author} className="flex items-center px-4 py-2">
