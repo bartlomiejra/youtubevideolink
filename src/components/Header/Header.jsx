@@ -47,7 +47,7 @@ const Header = ({ selectedPlatform, handlePlatformChange, onToggleAuthors }) => 
           onClick={onToggleAuthors}
           className="mx-2 p-2 rounded bg-gray-700 text-white hover:bg-gray-600 transition duration-200"
         >
-          Pokaż/Ukryj Listę autorów
+          Wszystkie Platformy
         </button>
       </div>
     </header>
