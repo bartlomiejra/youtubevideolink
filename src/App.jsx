@@ -128,6 +128,9 @@ function App() {
 
   const renderVideo = (video, index) => {
     const videoId = getVideoId(video.link);
+    const channelName = (video.channel_name);
+    const channelLink = (video.Link);
+    const channelImage = (video.channel_image);
     const isYouTube = video.platform === 'youtube';
     const isRumble = video.platform === 'rumble';
     const isPodcast = video.platform === 'playlist';
@@ -138,26 +141,64 @@ function App() {
         : (video.image_url || podcastImage);
 
     return (
-      <div key={index} className="bg-gray-950 shadow-lg rounded-lg overflow-hidden no-underline text-green-500">
-        <>
-          <a href={video.link} target="_blank" rel="noopener noreferrer">
-            <img 
-              src={thumbnailUrl} 
-              alt={video.title} 
-              className="w-full h-48 object-cover cursor-pointer" 
-            />
-          </a>
-          <div className="p-4">
-            <h2 className="text-xl font-semibold mb-2 text-gray-200 no-underline">{video.title}</h2>
-            {video.description && (
-              <p className="text-gray-400">{video.description}</p>
-            )}
-            <p className="text-red-900 mt-2">{video.date}</p>
-          </div>
-        </>
+   
+
+    <div
+      key={video.index}
+      className=" bg-gray-900 text-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 ease-in-out duration-300"
+    >
+      <div className= "relative flex-auto ">
+      {/* Link do filmu z miniaturą */}
+        
+        <p className=" absolute top-0 text-xs text-gray-400">
+           {video.date}
+        </p>
+      <a href={video.link} target="_blank" rel="noopener noreferrer">
+        <img
+          src={thumbnailUrl}
+          alt={video.title}
+          className="w-full h-48 object-cover cursor-pointer"
+          >
+          </img>
+      </a>
+
+      {/* Sekcja z tytułem filmu */}
+      <div className=" flex absolute bottom-0 pb-1  bg-black bg-opacity-90">
+        <a href={video.link} target="_blank" rel="noopener noreferrer">
+          <p className="text-sm font-semibold text-gray-100  text-left hover:underline">
+            {video.title}
+          </p>
+        </a>
+
       </div>
-    );
-  };
+              {/* <div className="absolute bottom-0 right-0 flex items-center space-x-2 p-2 bg-black bg-opacity-50 rounded-tl-lg"> */}
+  </div>
+<div className="flex justify-end items-center p-2 bg-black bg-opacity-50">
+
+        <a
+          href={channelLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2"
+        >
+          {/* Nazwa kanału */}
+          <p className="text-xs font-light text-gray-300 hover:underline">
+            {channelName}
+          </p>
+
+          {/* Zdjęcie kanału */}
+          <img
+            src={`/youtube/${channelImage}`} // Ścieżka obrazu w folderze public
+            alt={`Avatar for ${channelName}`}
+            className="w-9 h-9 rounded-full border-1 border-black shadow-md"
+          />
+        </a>
+      </div>
+    </div>
+  );
+};
+
+
 
   const renderAuthors = () => (
     <div className="mb-4">
@@ -194,9 +235,10 @@ function App() {
       {!loading && (
         <>
      <div className="flex flex-col md:flex-row gap-4"> {/* Flexbox dla układu obok siebie */}
-  <div className="w-full md:w-1/4 bg-gray-900 p-4"> {/* Pasek autorów */}
-    <AuthorsList /> {/* Wyświetlenie listy autorów */}
-  </div>
+ <div className="hidden md:block w-full md:w-1/4 bg-gray-900 p-4"> {/* Pasek autorów */}
+  <AuthorsList /> {/* Wyświetlenie listy autorów */}
+</div>
+
 
   <div className="flex-grow p-4"> {/* Kontener dla reszty */}
     <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
