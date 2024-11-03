@@ -23,8 +23,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [sortNewest, setSortNewest] = useState(true);
   const [authors, setAuthors] = useState([]); // Stan do przechowywania autorów
-
-
    useEffect(() => {
     setAuthors(authorsData);
   }, []);
@@ -34,14 +32,12 @@ function App() {
     const [day, month, year] = dateString.split('.').map(Number);
     return new Date(year, month - 1, day);
   };
-
   useEffect(() => {
     const combinedVideos = [
       ...rumbleVideosData,
       ...youtubeVideosData,
       ...podcastsData,
     ];
-
     setVideos(combinedVideos);
     setInitialVideos(combinedVideos);
     setLoading(false);
@@ -60,10 +56,8 @@ function App() {
     const timer = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
     }, 2000);
-
     return () => clearTimeout(timer);
   }, [searchTerm]);
-
   const getVideoId = (link) => {
     try {
       const url = new URL(link);
@@ -83,7 +77,6 @@ function App() {
       return null;
     }
   };
-
   // Użycie useMemo dla wydajności
   const filteredVideos = useMemo(() => {
     return videos
@@ -125,7 +118,6 @@ function App() {
     setVideos(combinedVideos);
     setTimeout(() => setLoading(false), 1000);
   };
-
   const renderVideo = (video, index) => {
     const videoId = getVideoId(video.link);
     const channelName = (video.channel_name);
@@ -139,10 +131,7 @@ function App() {
       : isRumble 
         ? rumbleLogo 
         : (video.image_url || podcastImage);
-
     return (
-   
-
     <div
       key={video.index}
       className=" bg-gray-900 text-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 ease-in-out duration-300"
@@ -212,7 +201,6 @@ function App() {
       </ul>
     </div>
   );
-
   return (
     <div className="min-h-screen bg-gray-180000 text-gray-200 flex flex-col items-center">
       <Header 
@@ -225,24 +213,19 @@ function App() {
         handleSortNewest={handleSortNewest}
         handleSortRandom={handleSortRandom}
       />
-
       {loading && (
         <div className="col-span-full text-center py-6 h-screen">
           <p className="text-lg text-gray-400">Ładowanie...</p>
         </div>
       )}
-
       {!loading && (
         <>
      <div className="flex flex-col md:flex-row gap-4"> {/* Flexbox dla układu obok siebie */}
  <div className="hidden md:block w-full md:w-1/4 bg-gray-900 p-4"> {/* Pasek autorów */}
   <AuthorsList /> {/* Wyświetlenie listy autorów */}
 </div>
-
-
   <div className="flex-grow p-4"> {/* Kontener dla reszty */}
     <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
-
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow mt-4 min-h-[200px]"> {/* Minimalna wysokość */}
       {filteredVideos.length > 0 ? (
         filteredVideos.map(renderVideo)
@@ -261,5 +244,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
