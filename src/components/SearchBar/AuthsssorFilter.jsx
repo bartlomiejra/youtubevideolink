@@ -4,35 +4,43 @@ import React, { useEffect, useState } from 'react';
 const AuthorFilter = ({ selectedAuthors, setSelectedAuthors }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [authors, setAuthors] = useState([]);
-  const [authorsList, setAuthorsList] = useState([]);
 
   // Wczytywanie autorów z pliku JSON
   useEffect(() => {
     const fetchAuthors = async () => {
-      const response = await fetch('/data/authors.json');
-      const data = await response.json();
-      setAuthors(data);
-      setAuthorsList(data);
+      try {
+        const response = await fetch('/data/authors.json');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setAuthors(data);
+      } catch (error) {
+        console.error('Error fetching authors:', error);
+      }
     };
 
     fetchAuthors();
   }, []);
 
   const toggleDropdown = () => {
-  const toggle = () => setIsOpen(!isOpen);
-    setIsOpen(!isOpen);
+    setIsOpen((prevState) => !prevState); // Użyj funkcji aktualizującej
   };
 
   const handleCheckboxChange = (authorName) => {
     if (selectedAuthors.includes(authorName)) {
-      setSelectedAuthors(selectedAuthors.filter(name => name !== authorName)); // Usuwa autora
+      setSelectedAuthors((prevSelected) => 
+        prevSelected.filter(name => name !== authorName)
+      ); // Usuwa autora
     } else {
-      setSelectedAuthors([...selectedAuthors, authorName]); // Dodaje autora
+      setSelectedAuthors((prevSelected) => 
+        [...prevSelected, authorName]
+      ); // Dodaje autora
     }
   };
 
   return (
-    <div className="relative inline-block text-left w-full"> {/* Ustaw szerokość na 100% */}
+    <div className="relative inline-block text-left w-full">
       <div>
         <button
           onClick={toggleDropdown}
@@ -46,7 +54,7 @@ const AuthorFilter = ({ selectedAuthors, setSelectedAuthors }) => {
       </div>
       
       {isOpen && (
-        <div className="absolute right-0 z-10 mt-2 w-full max-h-full overflow-y-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"> {/* Ustaw szerokość na 100% i dodaj scroll */}
+        <div className="absolute right-0 z-10 mt-2 w-full max-h-60 overflow-y-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div className="py-1">
             {authors.map((author) => (
               <div key={author} className="flex items-center px-4 py-2">

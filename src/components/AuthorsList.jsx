@@ -26,6 +26,7 @@ const AuthorsList = ({ selectedPlatform }) => { // Dodano prop dla wybranej plat
         videos.forEach(video => {
           if (authorRegex.test(video.title)) {
             counts[lastName] = (counts[lastName] || 0) + 1; // Zlicz filmy
+            // {console.log(counts)}
           }
         });
       };

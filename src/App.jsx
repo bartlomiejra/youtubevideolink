@@ -189,18 +189,20 @@ function App() {
 
 
 
-  const renderAuthors = () => (
-    <div className="mb-4">
-      <h3 className="text-xl font-semibold mb-2 text-gray-200">Autorzy:</h3>
-      <ul>
-        {authors.map((author, index) => (
-          <li key={index} className="text-gray-400">
-            {author.name} ({author.video_count} wideo)
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  // const renderAuthors = () => (
+  //   <div className="mb-4">
+  //     <h3 className="text-xl font-semibold mb-2 text-gray-200">Autorzy:</h3>
+  //     <ul>
+  //       {authors.map((author, index) => (
+  //         <li key={index} className="text-gray-400">
+  //           {author.name} ({author.video_count} wideo)
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </div>
+  // );
+
+  
   return (
     <div className="min-h-screen bg-gray-180000 text-gray-200 flex flex-col items-center">
       <Header 
@@ -222,7 +224,7 @@ function App() {
         <>
      <div className="flex flex-col md:flex-row gap-4"> {/* Flexbox dla układu obok siebie */}
  <div className="hidden md:block w-full md:w-1/4 bg-gray-900 p-4"> {/* Pasek autorów */}
-  <AuthorsList /> {/* Wyświetlenie listy autorów */}
+  <AuthorsList /> 
 </div>
   <div className="flex-grow p-4"> {/* Kontener dla reszty */}
     <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
