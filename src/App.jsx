@@ -23,9 +23,12 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [sortNewest, setSortNewest] = useState(true);
   const [authors, setAuthors] = useState([]); // Stan do przechowywania autorów
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 100; // Liczba filmów na stronę
    useEffect(() => {
     setAuthors(authorsData);
   }, []);
+
 
   // Funkcja do konwersji daty z formatu DD.MM.YYYY na obiekt Date
   const parseDate = (dateString) => {
@@ -94,7 +97,11 @@ function App() {
         return 0; // Bez sortowania
       });
   }, [videos, debouncedSearchTerm, selectedPlatform, sortNewest]);
-
+const paginatedVideos = useMemo(() => {
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  return filteredVideos.slice(startIndex, endIndex);
+}, [filteredVideos, currentPage, itemsPerPage]);
   const handleSortNewest = () => {
     setSortNewest(true);
   };
@@ -118,6 +125,18 @@ function App() {
     setVideos(combinedVideos);
     setTimeout(() => setLoading(false), 1000);
   };
+
+  const handleNextPage = () => {
+  if (currentPage < Math.ceil(filteredVideos.length / itemsPerPage)) {
+    setCurrentPage(currentPage + 1);
+  }
+};
+
+const handlePrevPage = () => {
+  if (currentPage > 1) {
+    setCurrentPage(currentPage - 1);
+  }
+};
   const renderVideo = (video, index) => {
     const videoId = getVideoId(video.link);
     const channelName = (video.channel_name);
@@ -231,14 +250,36 @@ function App() {
   <div className="flex-grow p-4"> {/* Kontener dla reszty */}
     <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow mt-4 min-h-[200px]"> {/* Minimalna wysokość */}
-      {filteredVideos.length > 0 ? (
-        filteredVideos.map(renderVideo)
+       {paginatedVideos.length > 0 ? (
+      paginatedVideos.map(renderVideo)
       ) : (
         <p className="col-span-full text-center text-gray-400">Brak wyników do wyświetlenia.</p>
       )}
-    </div>
+ </div>
+      <div className="flex justify-center items-center space-x-4 my-4">
+  <button
+    onClick={handlePrevPage}
+    disabled={currentPage === 1}
+    className={`px-4 py-2 rounded ${currentPage === 1 ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'}`}
+  >
+    Poprzednia
+  </button>
+  <span className="text-gray-200">
+    Strona {currentPage} z {Math.ceil(filteredVideos.length / itemsPerPage)}
+  </span>
+  <button
+    onClick={handleNextPage}
+    disabled={currentPage === Math.ceil(filteredVideos.length / itemsPerPage)}
+    className={`px-4 py-2 rounded ${currentPage === Math.ceil(filteredVideos.length / itemsPerPage) ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'}`}
+  >
+    Następna
+  </button>
+</div>
+   
+
   </div>
 </div>
+
 
         </>
       )}
