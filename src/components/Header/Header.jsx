@@ -22,7 +22,6 @@ const Header = ({ selectedPlatform, handlePlatformChange, onToggleAuthors }) => 
           YouTube
         </button>
         <button
-        disabled={true}
           onClick={() => handlePlatformChange('rumble')}
           className={`mx-2 p-2 rounded transition duration-200 ${
             selectedPlatform === 'rumble'

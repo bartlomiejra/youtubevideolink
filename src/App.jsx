@@ -129,8 +129,10 @@ function App() {
     const thumbnailUrl = isYouTube 
       ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` 
       : isRumble 
-        ? rumbleLogo 
-        : (video.image_url || podcastImage);
+      ? rumbleLogo 
+      : isPodcast
+      ? "/src/assets/bartplay.png"
+      : video.image_url || podcastImage;
     return (
     <div
       key={video.index}
