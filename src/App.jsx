@@ -24,7 +24,7 @@ function App() {
   const [sortNewest, setSortNewest] = useState(true);
   const [authors, setAuthors] = useState([]); // Stan do przechowywania autorów
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 100; // Liczba filmów na stronę
+  const itemsPerPage = 500; // Liczba filmów na stronę
    useEffect(() => {
     setAuthors(authorsData);
   }, []);
