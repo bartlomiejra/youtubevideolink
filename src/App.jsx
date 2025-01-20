@@ -2,6 +2,9 @@ import React, { useEffect, useState, useMemo } from 'react';
 import rumbleVideosData from './assets/data/rumble_videos.json';
 import authorsData from './assets/data/authors.json'; // Importuj dane autorów
 import AuthorsList from './components/AuthorsList'; // Importuj komponent AuthorsList
+import Pagination from './components/Pagination/Pagination';  // Dostosuj ścieżkę do komponentu
+import Player from './components/Player/Player';  // Dostosuj ścieżkę do komponentu
+
 
 import youtubeVideosData from './assets/data/youtube_videos.json';
 import podcastsData from './assets/data/podcasts.json';
@@ -15,6 +18,8 @@ import SearchBar from './components/SearchBar/SearchBar';
 import KoFiWidget from './components/Widgets/KoFiWidget';
 
 function App() {
+    const [selectedVideo, setSelectedVideo] = useState(null);
+
   const [videos, setVideos] = useState([]);
   const [initialVideos, setInitialVideos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,12 +29,20 @@ function App() {
   const [sortNewest, setSortNewest] = useState(true);
   const [authors, setAuthors] = useState([]); // Stan do przechowywania autorów
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 500; // Liczba filmów na stronę
+  const itemsPerPage = 100; // Liczba filmów na stronę
    useEffect(() => {
     setAuthors(authorsData);
   }, []);
 
+const handleSearchChange = (event) => {
+  setSearchTerm(event.target.value);
+  setCurrentPage(1);  // Zresetowanie strony do 1
+};
 
+  const handlePlayVideo = (video) => {
+    setSelectedVideo(video);
+  };
+ 
   // Funkcja do konwersji daty z formatu DD.MM.YYYY na obiekt Date
   const parseDate = (dateString) => {
     const [day, month, year] = dateString.split('.').map(Number);
@@ -102,10 +115,10 @@ const paginatedVideos = useMemo(() => {
   const endIndex = startIndex + itemsPerPage;
   return filteredVideos.slice(startIndex, endIndex);
 }, [filteredVideos, currentPage, itemsPerPage]);
+
   const handleSortNewest = () => {
     setSortNewest(true);
   };
-
   const handleSortRandom = () => {
     const randomVideos = [...initialVideos].sort(() => Math.random() - 0.5);
     setVideos(randomVideos);
@@ -123,6 +136,7 @@ const paginatedVideos = useMemo(() => {
     ];
     setInitialVideos(combinedVideos);
     setVideos(combinedVideos);
+    setCurrentPage(1);  // Zresetowanie strony do 1
     setTimeout(() => setLoading(false), 1000);
   };
 
@@ -136,6 +150,8 @@ const handlePrevPage = () => {
   if (currentPage > 1) {
     setCurrentPage(currentPage - 1);
   }
+
+  
 };
   const renderVideo = (video, index) => {
     const videoId = getVideoId(video.link);
@@ -163,6 +179,11 @@ const handlePrevPage = () => {
         <p className=" absolute top-0 text-xs text-gray-400">
            {video.date}
         </p>
+          <button key={video.id} onClick={() => handlePlayVideo(video)}>
+          {video.title}
+        </button>
+              {/* {selectedVideo && <Player video={selectedVideo} />} */}
+
       <a href={video.link} target="_blank" rel="noopener noreferrer">
         <img
           src={thumbnailUrl}
@@ -256,25 +277,17 @@ const handlePrevPage = () => {
         <p className="col-span-full text-center text-gray-400">Brak wyników do wyświetlenia.</p>
       )}
  </div>
-      <div className="flex justify-center items-center space-x-4 my-4">
-  <button
-    onClick={handlePrevPage}
-    disabled={currentPage === 1}
-    className={`px-4 py-2 rounded ${currentPage === 1 ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'}`}
-  >
-    Poprzednia
-  </button>
-  <span className="text-gray-200">
-    Strona {currentPage} z {Math.ceil(filteredVideos.length / itemsPerPage)}
-  </span>
-  <button
-    onClick={handleNextPage}
-    disabled={currentPage === Math.ceil(filteredVideos.length / itemsPerPage)}
-    className={`px-4 py-2 rounded ${currentPage === Math.ceil(filteredVideos.length / itemsPerPage) ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'}`}
-  >
-    Następna
-  </button>
+
+
+   <div className="flex justify-center items-center space-x-4 my-4">
+   <Pagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(filteredVideos.length / itemsPerPage)}
+          onPrevPage={handlePrevPage}
+          onNextPage={handleNextPage}
+        />
 </div>
+
    
 
   </div>

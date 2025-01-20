@@ -46,9 +46,9 @@ const AuthorsList = ({ selectedPlatform }) => { // Dodano prop dla wybranej plat
   };
 
   return (
-    <div className="flex flex-col overflow-y-auto p-4 bg-gray-800 text-white h-full"> {/* Kontener dla autorów z pełną wysokością */}
-      <h3 className="text-xl font-semibold mb-4">Autorzy(🚧 W budowie)</h3>
-      <div className="flex flex-col gap-2">
+    <div className="h-[7000px] overflow-y-auto bg-gray-900 p-4 rounded-lg shadow-lg">
+  <h3 className="text-xl font-semibold mb-2 text-gray-200">Autorzy(🚧 W budowie)</h3>
+      <div className="flex flex-col gap-2 scroll">
         {loading ? (
           <div className="text-center">Ładowanie autorów...</div>
         ) : (
