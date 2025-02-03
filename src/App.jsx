@@ -2,14 +2,13 @@ import React, { useEffect, useState, useMemo } from 'react';
 import rumbleVideosData from './assets/data/rumble_videos.json';
 import authorsData from './assets/data/authors.json'; // Importuj dane autorów
 import AuthorsList from './components/AuthorsList'; // Importuj komponent AuthorsList
+import VideoCard from './components/ VideoCard/VideoCard';
 import Pagination from './components/Pagination/Pagination';  // Dostosuj ścieżkę do komponentu
-import Player from './components/Player/Player';  // Dostosuj ścieżkę do komponentu
 
 
 import youtubeVideosData from './assets/data/youtube_videos.json';
 import podcastsData from './assets/data/podcasts.json';
-import rumbleLogo from './assets/rumble.png';
-import podcastImage from './assets/podcast.png';
+
 import './index.css';
 import Header from './components/Header/Header';
 import ContentCount from './ContentCount';
@@ -38,11 +37,10 @@ const handleSearchChange = (event) => {
   setSearchTerm(event.target.value);
   setCurrentPage(1);  // Zresetowanie strony do 1
 };
-
   const handlePlayVideo = (video) => {
     setSelectedVideo(video);
   };
- 
+   
   // Funkcja do konwersji daty z formatu DD.MM.YYYY na obiekt Date
   const parseDate = (dateString) => {
     const [day, month, year] = dateString.split('.').map(Number);
@@ -153,84 +151,17 @@ const handlePrevPage = () => {
 
   
 };
-  const renderVideo = (video, index) => {
-    const videoId = getVideoId(video.link);
-    const channelName = (video.channel_name);
-    const channelLink = (video.Link);
-    const channelImage = (video.channel_image);
-    const isYouTube = video.platform === 'youtube';
-    const isRumble = video.platform === 'rumble';
-    const isPodcast = video.platform === 'playlist';
-    const thumbnailUrl = isYouTube 
-      ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` 
-      : isRumble 
-      ? rumbleLogo 
-      : isPodcast
-      ? "/src/assets/bartplay.png"
-      : video.image_url || podcastImage;
-    return (
-    <div
-      key={video.index}
-      className=" bg-gray-900 text-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 ease-in-out duration-300"
-    >
-      <div className= "relative flex-auto ">
-      {/* Link do filmu z miniaturą */}
-        
-        <p className=" absolute top-0 text-xs text-gray-400">
-           {video.date}
-        </p>
-          <button key={video.id} onClick={() => handlePlayVideo(video)}>
-          {video.title}
-        </button>
-              {/* {selectedVideo && <Player video={selectedVideo} />} */}
-
-      <a href={video.link} target="_blank" rel="noopener noreferrer">
-        <img
-          src={thumbnailUrl}
-          alt={video.title}
-          className="w-full h-48 object-cover cursor-pointer"
-          >
-          </img>
-      </a>
-
-      {/* Sekcja z tytułem filmu */}
-      <div className=" flex absolute bottom-0 pb-1  bg-black bg-opacity-90">
-        <a href={video.link} target="_blank" rel="noopener noreferrer">
-          <p className="text-sm font-semibold text-gray-100  text-left hover:underline">
-            {video.title}
-          </p>
-        </a>
-
-      </div>
-              {/* <div className="absolute bottom-0 right-0 flex items-center space-x-2 p-2 bg-black bg-opacity-50 rounded-tl-lg"> */}
-  </div>
-<div className="flex justify-end items-center p-2 bg-black bg-opacity-50">
-
-        <a
-          href={channelLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center space-x-2"
-        >
-          {/* Nazwa kanału */}
-          <p className="text-xs font-light text-gray-300 hover:underline">
-            {channelName}
-          </p>
-
-          {/* Zdjęcie kanału */}
-          <img
-            src={`/youtube/${channelImage}`} // Ścieżka obrazu w folderze public
-            alt={`Avatar for ${channelName}`}
-            className="w-9 h-9 rounded-full border-1 border-black shadow-md"
-          />
-        </a>
-      </div>
-    </div>
-  );
-};
 
 
-
+ const renderVideo = (video, index) => (
+        <VideoCard
+            key={index}
+            video={video}
+            handlePlayVideo={handlePlayVideo}
+            selectedVideo={selectedVideo}
+            index={index}
+        />
+    );
   // const renderAuthors = () => (
   //   <div className="mb-4">
   //     <h3 className="text-xl font-semibold mb-2 text-gray-200">Autorzy:</h3>
@@ -244,19 +175,20 @@ const handlePrevPage = () => {
   //   </div>
   // );
 
+        // {/* <VideoCard/> */}
   
   return (
     <div className="min-h-screen bg-gray-180000 text-gray-200 flex flex-col items-center">
       <Header 
         selectedPlatform={selectedPlatform} 
         handlePlatformChange={handlePlatformChange} 
-      />
+        />
       <SearchBar 
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         handleSortNewest={handleSortNewest}
         handleSortRandom={handleSortRandom}
-      />
+        />
       {loading && (
         <div className="col-span-full text-center py-6 h-screen">
           <p className="text-lg text-gray-400">Ładowanie...</p>
@@ -267,6 +199,7 @@ const handlePrevPage = () => {
      <div className="flex flex-col md:flex-row gap-4"> {/* Flexbox dla układu obok siebie */}
  <div className="hidden md:block w-full md:w-1/4 bg-gray-900 p-4"> {/* Pasek autorów */}
   <AuthorsList /> 
+  
 </div>
   <div className="flex-grow p-4"> {/* Kontener dla reszty */}
     <ContentCount count={filteredVideos.length} platform={selectedPlatform} />

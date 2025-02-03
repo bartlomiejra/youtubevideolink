@@ -9,9 +9,7 @@ const DraggableModal = () => {
 
   const videos = [
     { id: 'abcdefg', title: 'Film 1' },
-   
   ];
-
   // Funkcja do ustawienia wybranego filmu
   const handlePlayVideo = (videoId) => {
     setSelectedVideo(videoId); // Ustawienie ID filmu
@@ -21,7 +19,7 @@ const DraggableModal = () => {
   const handleClosePlayer = () => {
     setSelectedVideo(null); // Zamknięcie modalu
   };
-
+  
   // Funkcja do rozpoczęcia przeciągania
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -52,7 +50,6 @@ const DraggableModal = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     }
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
@@ -61,6 +58,7 @@ const DraggableModal = () => {
 
   return (
     <div>
+      {console.log(selectedVideo)}
       {/* Wyświetlamy tylko listę przycisków do wyboru filmu */}
       <div>
         {videos.map((video) => (
