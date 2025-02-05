@@ -72,25 +72,7 @@ const handleSearchChange = (event) => {
     }, 2000);
     return () => clearTimeout(timer);
   }, [searchTerm]);
-  const getVideoId = (link) => {
-    try {
-      const url = new URL(link);
-      const isYouTube = url.hostname.includes('youtube.com') || url.hostname.includes('youtu.be');
-      const isRumble = url.hostname.includes('rumble.com');
-
-      if (isYouTube) {
-        const videoId = url.searchParams.get('v');
-        return videoId ? videoId : link.split('list=')[1];
-      } else if (isRumble) {
-        const pathParts = url.pathname.split('/');
-        return pathParts[2];
-      }
-      return null;
-    } catch (error) {
-      console.error(`Invalid URL: ${link}`, error);
-      return null;
-    }
-  };
+  
   // Użycie useMemo dla wydajności
   const filteredVideos = useMemo(() => {
     return videos
@@ -113,7 +95,6 @@ const paginatedVideos = useMemo(() => {
   const endIndex = startIndex + itemsPerPage;
   return filteredVideos.slice(startIndex, endIndex);
 }, [filteredVideos, currentPage, itemsPerPage]);
-
   const handleSortNewest = () => {
     setSortNewest(true);
   };
