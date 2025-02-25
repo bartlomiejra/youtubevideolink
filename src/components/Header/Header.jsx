@@ -43,12 +43,7 @@ const Header = ({ selectedPlatform, handlePlatformChange, onToggleAuthors }) => 
         </button>
 
         {/* Przycisk do pokazywania/ukrywania autorów */}
-        <button  disabled={true}        
-          onClick={onToggleAuthors}
-          className="mx-2 p-2 rounded bg-gray-700 text-white hover:bg-gray-600 transition duration-200"
-        >
-          Wszystkie Platformy
-        </button>
+        
       </div>
     </header>
   );

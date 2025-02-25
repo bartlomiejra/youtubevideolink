@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import rumbleVideosData from './assets/data/rumble_videos.json';
 import authorsData from './assets/data/authors.json'; // Importuj dane autorów
 import AuthorsList from './components/AuthorsList'; // Importuj komponent AuthorsList
-import VideoCard from './components/ VideoCard/VideoCard';
+import VideoCard from './components/VideoCard/VideoCard';
 import Pagination from './components/Pagination/Pagination';  // Dostosuj ścieżkę do komponentu
 
 
