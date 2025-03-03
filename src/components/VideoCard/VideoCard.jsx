@@ -76,7 +76,7 @@ const VideoCard = ({ video, handlePlayVideo, selectedVideo, index }) => {
           {video.title}
         </button>
         {selectedVideo && <Player video={selectedVideo} />}
-        <a href={video.link} target="_blank" rel="noopener noreferrer">
+        <a href={getVideoLink(video)} target="_blank" rel="noopener noreferrer">
           <img
             src={thumbnailUrl}
             alt={video.title}
