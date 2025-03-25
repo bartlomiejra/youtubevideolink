@@ -1,6 +1,5 @@
 // ContentCount.js
 import React from 'react';
-
 const ContentCount = ({ count, platform }) => {
   // Determine the display text based on the platform
   const displayText =
