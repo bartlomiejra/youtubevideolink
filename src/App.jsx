@@ -55,7 +55,6 @@ const handleSearchChange = (event) => {
     setVideos(combinedVideos);
     setInitialVideos(combinedVideos);
     setLoading(false);
-
     // Przygotowanie listy autorów
     const authorSet = new Set();
     combinedVideos.forEach(video => {
