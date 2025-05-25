@@ -71,7 +71,6 @@ const handleSearchChange = (event) => {
     }, 2000);
     return () => clearTimeout(timer);
   }, [searchTerm]);
-  
   // Użycie useMemo dla wydajności
   const filteredVideos = useMemo(() => {
     return videos
