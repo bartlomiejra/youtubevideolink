@@ -4,11 +4,12 @@ import authorsData from './assets/data/authors.json'; // Importuj dane autorów
 import AuthorsList from './components/AuthorsList'; // Importuj komponent AuthorsList
 import VideoCard from './components/VideoCard/VideoCard';
 import Pagination from './components/Pagination/Pagination';  // Dostosuj ścieżkę do komponentu
-
-
+import { parseDate } from './utils/date';
+import { useDebounce } from './hooks/useDebounce';
+import { useFilteredVideos } from './hooks/useFilteredVideos';
 import youtubeVideosData from './assets/data/youtube_videos.json';
 import podcastsData from './assets/data/podcasts.json';
-
+import { usePagination } from './hooks/usePagination';
 import './index.css';
 import Header from './components/Header/Header';
 import ContentCount from './ContentCount';
@@ -17,21 +18,29 @@ import SearchBar from './components/SearchBar/SearchBar';
 import KoFiWidget from './components/Widgets/KoFiWidget';
 
 function App() {
-    const [selectedVideo, setSelectedVideo] = useState(null);
-
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const [videos, setVideos] = useState([]);
   const [initialVideos, setInitialVideos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 400);
   const [selectedPlatform, setSelectedPlatform] = useState('youtube');
   const [loading, setLoading] = useState(true);
   const [sortNewest, setSortNewest] = useState(true);
   const [authors, setAuthors] = useState([]); // Stan do przechowywania autorów
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 100; // Liczba filmów na stronę
+
+   const filteredVideos = useFilteredVideos(videos, debouncedSearchTerm, selectedPlatform, sortNewest, parseDate);
+  const { paginatedItems: paginatedVideos, totalPages } = usePagination(
+  filteredVideos,
+  currentPage,
+  itemsPerPage
+);
    useEffect(() => {
     setAuthors(authorsData);
   }, []);
+
+
 
 const handleSearchChange = (event) => {
   setSearchTerm(event.target.value);
@@ -42,10 +51,7 @@ const handleSearchChange = (event) => {
   };
    
   // Funkcja do konwersji daty z formatu DD.MM.YYYY na obiekt Date
-  const parseDate = (dateString) => {
-    const [day, month, year] = dateString.split('.').map(Number);
-    return new Date(year, month - 1, day);
-  };
+ 
   useEffect(() => {
     const combinedVideos = [
       ...rumbleVideosData,
@@ -65,34 +71,12 @@ const handleSearchChange = (event) => {
     setAuthors(Array.from(authorSet)); // Przechowuj unikalnych autorów
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
-  // Użycie useMemo dla wydajności
-  const filteredVideos = useMemo(() => {
-    return videos
-      .filter(video => {
-        const matchesSearchTerm = video.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
-        const matchesPlatform = video.platform === selectedPlatform;
-        return matchesSearchTerm && matchesPlatform;
-      })
-      .sort((a, b) => {
-        if (sortNewest) {
-          const dateA = a.date ? parseDate(a.date) : new Date(0);
-          const dateB = b.date ? parseDate(b.date) : new Date(0);
-          return dateB - dateA; // Sortuj od najnowszego do najstarszego
-        }
-        return 0; // Bez sortowania
-      });
-  }, [videos, debouncedSearchTerm, selectedPlatform, sortNewest]);
-const paginatedVideos = useMemo(() => {
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  return filteredVideos.slice(startIndex, endIndex);
-}, [filteredVideos, currentPage, itemsPerPage]);
+
+// const paginatedVideos = useMemo(() => {
+//   const startIndex = (currentPage - 1) * itemsPerPage;
+//   const endIndex = startIndex + itemsPerPage;
+//   return filteredVideos.slice(startIndex, endIndex);
+// }, [filteredVideos, currentPage, itemsPerPage]);
   const handleSortNewest = () => {
     setSortNewest(true);
   };
@@ -117,18 +101,11 @@ const paginatedVideos = useMemo(() => {
     setTimeout(() => setLoading(false), 1000);
   };
 
-  const handleNextPage = () => {
-  if (currentPage < Math.ceil(filteredVideos.length / itemsPerPage)) {
-    setCurrentPage(currentPage + 1);
-  }
+ const handleNextPage = () => {
+  if (currentPage < totalPages) setCurrentPage(currentPage + 1);
 };
-
 const handlePrevPage = () => {
-  if (currentPage > 1) {
-    setCurrentPage(currentPage - 1);
-  }
-
-  
+  if (currentPage > 1) setCurrentPage(currentPage - 1);
 };
 
 
@@ -193,11 +170,11 @@ const handlePrevPage = () => {
 
    <div className="flex justify-center items-center space-x-4 my-4">
    <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(filteredVideos.length / itemsPerPage)}
-          onPrevPage={handlePrevPage}
-          onNextPage={handleNextPage}
-        />
+    currentPage={currentPage}
+    totalPages={totalPages}
+    onPrevPage={handlePrevPage}
+    onNextPage={handleNextPage}
+  /> 
 </div>
 
    
