@@ -34,10 +34,13 @@ const SearchBar = ({
           📅 Najnowsze
         </button>
         <input
+          value={searchTerm}
+          onChange={e => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1);
+          }}
           type="text"
           placeholder="Szukaj audiobooków..."
-          value={searchTerm}
-          onChange={handleSearchChange}  // Wywołanie funkcji obsługującej zmianę
           className="w-full md:w-3/4 lg:w-2/3 h-12 p-3 border border-gray-700 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center"
         />
 

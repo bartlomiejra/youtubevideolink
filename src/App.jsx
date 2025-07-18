@@ -144,6 +144,7 @@ const handlePrevPage = () => {
         setSearchTerm={setSearchTerm}
         handleSortNewest={handleSortNewest}
         handleSortRandom={handleSortRandom}
+        setCurrentPage={setCurrentPage} 
         />
       {loading && (
         <div className="col-span-full text-center py-6 h-screen">
@@ -152,33 +153,32 @@ const handlePrevPage = () => {
       )}
       {!loading && (
         <>
-     <div className="flex flex-col md:flex-row gap-4"> {/* Flexbox dla układu obok siebie */}
- <div className="hidden md:block w-full md:w-1/4 bg-gray-900 p-4"> {/* Pasek autorów */}
-  <AuthorsList /> 
-  
-</div>
-  <div className="flex-grow p-4"> {/* Kontener dla reszty */}
+     <div className="flex flex-col md:flex-row gap-4 w-full max-w-7xl mx-auto min-h-[calc(100vh-64px)] flex-1">
+  {/* Sidebar autorów */}
+  <div className="w-full md:w-1/4 bg-gray-900 p-4 rounded-none md:rounded-l-lg shadow-lg flex flex-col h-auto md:h-full">
+    <AuthorsList
+      selectedPlatform={selectedPlatform}
+      onAuthorClick={setSearchTerm}
+    />
+  </div>
+  {/* Główna część */}
+  <div className="flex-grow p-4 flex flex-col h-auto md:h-full">
     <ContentCount count={filteredVideos.length} platform={selectedPlatform} />
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow mt-4 min-h-[200px]"> {/* Minimalna wysokość */}
-       {paginatedVideos.length > 0 ? (
-      paginatedVideos.map(renderVideo)
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 flex-grow mt-4 min-h-[200px]">
+      {paginatedVideos.length > 0 ? (
+        paginatedVideos.map(renderVideo)
       ) : (
         <p className="col-span-full text-center text-gray-400">Brak wyników do wyświetlenia.</p>
       )}
- </div>
-
-
-   <div className="flex justify-center items-center space-x-4 my-4">
-   <Pagination
-    currentPage={currentPage}
-    totalPages={totalPages}
-    onPrevPage={handlePrevPage}
-    onNextPage={handleNextPage}
-  /> 
-</div>
-
-   
-
+    </div>
+    <div className="flex justify-center items-center space-x-4 my-4">
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPrevPage={handlePrevPage}
+        onNextPage={handleNextPage}
+      />
+    </div>
   </div>
 </div>
 

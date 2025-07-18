@@ -1,79 +1,94 @@
-import React, { useEffect, useState } from 'react';
-import authorsData from '../assets/data/authors.json'; // Poprawna ścieżka do pliku authors.json
-import youtubeVideosData from '../assets/data/youtube_videos.json'; // Importuj dane z YouTube
-import rumbleVideosData from '../assets/data/rumble_videos.json'; // Importuj dane z Rumble
-import podcastsData from '../assets/data/podcasts.json'; // Importuj dane z podcastów
+import React, { useMemo } from 'react';
+import authorsData from '../assets/data/authors.json';
+import youtubeVideosData from '../assets/data/youtube_videos.json';
+import rumbleVideosData from '../assets/data/rumble_videos.json';
+import podcastsData from '../assets/data/podcasts.json';
 
-const AuthorsList = ({ selectedPlatform }) => { // Dodano prop dla wybranej platformy
-  const [authors, setAuthors] = useState([]);
-  const [videoCounts, setVideoCounts] = useState({}); // Stan do przechowywania liczby filmów dla autorów
-  const [loading, setLoading] = useState(true); // Stan ładowania
+const platformMap = {
+  youtube: youtubeVideosData,
+  rumble: rumbleVideosData,
+  playlist: podcastsData,
+};
 
-  useEffect(() => {
-    setAuthors(authorsData);
-    calculateVideoCounts(); // Wywołaj funkcję obliczającą liczbę filmów
-  }, [selectedPlatform]); // Zmiana na liście autorów przy zmianie platformy
+const colorClasses = [
+  "text-blue-200",
+  "text-pink-200",
+  "text-green-200",
+  "text-yellow-200",
+  "text-purple-200",
+  "text-cyan-200",
+  "text-orange-200",
+  "text-lime-200",
+  "text-emerald-200",
+  "text-fuchsia-200",
+  "text-sky-200",
+  "text-rose-200",
+];
 
-  const calculateVideoCounts = () => {
+function getColorClass(author) {
+  let hash = 0;
+  for (let i = 0; i < author.length; i++) {
+    hash = author.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colorClasses[Math.abs(hash) % colorClasses.length];
+}
+
+const AuthorsList = ({ selectedPlatform, onAuthorClick }) => {
+  const videos = platformMap[selectedPlatform] || [];
+
+  const videoCounts = useMemo(() => {
     const counts = {};
-
-    const countVideosForAuthor = (author) => {
-      const lastName = author.split(' ').pop(); // Pobieranie tylko nazwiska
-      const authorRegex = new RegExp(`\\b${lastName}\\b`, 'i'); // Szuka nazwiska autora w tytule
-
-      // Funkcja pomocnicza do zliczania filmów w różnych źródłach
-      const countInSource = (videos) => {
-        videos.forEach(video => {
-          if (authorRegex.test(video.title)) {
-            counts[lastName] = (counts[lastName] || 0) + 1; // Zlicz filmy
-            // {console.log(counts)}
-          }
-        });
-      };
-
-      // Zliczanie filmów z wszystkich źródeł
-      countInSource(youtubeVideosData); // Zlicz filmy z YouTube
-      countInSource(rumbleVideosData); // Zlicz filmy z Rumble
-      countInSource(podcastsData); // Zlicz filmy z podcastów
-    };
-
-    authors.forEach(author => {
-      countVideosForAuthor(author);
+    authorsData.forEach(author => {
+      const lastName = author.split(' ').pop();
+      const authorRegex = new RegExp(`\\b${lastName}\\b`, 'i');
+      counts[lastName] = videos.filter(video => authorRegex.test(video.title)).length;
     });
-
-    setVideoCounts(counts); // Ustaw liczby filmów w stanie
-    setLoading(false); // Ustaw stan ładowania na false po zakończeniu
-  };
+    return counts;
+  }, [selectedPlatform, videos]);
 
   return (
-    <div className="h-[7000px] overflow-y-auto bg-gray-900 p-4 rounded-lg shadow-lg">
-  <h3 className="text-xl font-semibold mb-2 text-gray-200">Autorzy(🚧 W budowie)</h3>
-      <div className="flex flex-col gap-2 scroll">
-        {loading ? (
-          <div className="text-center">Ładowanie autorów...</div>
-        ) : (
-          authors.map((author, index) => {
-            const lastName = author.split(' ').pop(); // Pobieranie tylko nazwiska
-            const count = videoCounts[lastName] || 0; // Liczba filmów dla autora
-
-            return (
-              <div 
-                key={index} 
-                className="flex items-center justify-between p-2 border-b border-gray-700 whitespace-nowrap" // Dodano `whitespace-nowrap` aby zapobiec zawijaniu tekstu
-              >
-                <span className="text-sm font-bold"> {/* Mniejszy tekst */}
-                  {author} {/* Nazwa autora */}
-                </span>
-                <span className="text-gray-400 ml-2 text-sm">
-                  {count > 0 ? `(${count})` : '0'} {/* Wyświetlanie liczby filmów lub komunikatu o braku */}
-                </span> 
-              </div>
-            );
-          })
-        )}
+    <div className="md:w-64    h-auto flex-1 flex flex-col gap-3 overflow-y-auto">
+      <h3 className="text-xl font-semibold mb-4 text-gray-200 text-left w-full ">Autorzy</h3>
+      <div className="">
+        {authorsData.map((author, index) => {
+          const lastName = author.split(' ').pop();
+          const count = videoCounts[lastName] || 0;
+          const colorClass = colorClasses[(getColorClass(author) + index) % colorClasses.length];
+          return (
+            <button
+              key={index}
+              className={`w-full px-4 py-2 truncate rounded-xl text-base font-semibold shadow-sm border border-gray-700 bg-gray-800 hover:bg-gray-700 hover:scale-101 transition-all duration-150 cursor-pointer flex justify-between items-center text-left ${colorClass}`}
+              onClick={() => onAuthorClick(author)} // <-- to jest OK, jeśli searchTerm ma być pełnym imieniem i nazwiskiem
+              title={author}
+              style={{ scrollbarWidth: 'auto' }}
+            >
+              <span className="break-words">{author}</span>
+              {count > 0 && <span className="ml-2 text-xs text-gray-400">{count}</span>}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
 };
 
-export default AuthorsList;
+const MainComponent = () => {
+  const [selectedPlatform, setSelectedPlatform] = React.useState('youtube');
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+  return (
+    <div className="flex flex-col md:flex-row gap-4 w-full max-w-7xl mx-auto">
+      <div className="w-full md:w-1/4 mb-4 md:mb-0">
+        <AuthorsList
+          selectedPlatform={selectedPlatform}
+          onAuthorClick={setSearchTerm}
+        />
+      </div>
+      <div className="flex-grow min-w-0 w-full md:w-3/4 p-4">
+        {/* ...główna część... */}
+      </div>
+    </div>
+  );
+};
+
+export default MainComponent;
