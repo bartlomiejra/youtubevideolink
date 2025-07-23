@@ -47,7 +47,8 @@ const AuthorsList = ({ selectedPlatform, onAuthorClick }) => {
   }, [selectedPlatform, videos]);
 
   return (
-    <div className="md:w-64    h-auto flex-1 flex flex-col gap-3 overflow-y-auto">
+    <div className="hidden md:flex md:w-64 h-auto flex-col gap-3 overflow-y-auto">
+
       <h3 className="text-xl font-semibold mb-4 text-gray-200 text-left w-full ">Autorzy</h3>
       <div className="">
         {authorsData.map((author, index) => {
