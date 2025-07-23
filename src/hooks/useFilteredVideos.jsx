@@ -3,9 +3,12 @@ export function useFilteredVideos(videos, searchTerm, platform, sortNewest, pars
   return useMemo(() => {
     return videos
       .filter(video => {
-        const matchesSearchTerm = video.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const term = searchTerm.toLowerCase();
+        const matchesTitle = video.title.toLowerCase().includes(term);
+        const matchesGenres =
+          video.genres && video.genres.some(genre => genre.toLowerCase().includes(term));
         const matchesPlatform = video.platform === platform;
-        return matchesSearchTerm && matchesPlatform;
+        return (matchesTitle || matchesGenres) && matchesPlatform;
       })
       .sort((a, b) => {
         if (sortNewest) {

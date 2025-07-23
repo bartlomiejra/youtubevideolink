@@ -68,6 +68,7 @@ const VideoCard = ({ video, handlePlayVideo, selectedVideo, index }) => {
       className="bg-gray-900 text-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 ease-in-out duration-300"
     >
       <div className="relative flex-auto">
+        
         {/* Link do filmu z miniaturą */}
         <p className="absolute top-0 text-xs text-gray-400">
            {video.date}
@@ -83,13 +84,25 @@ const VideoCard = ({ video, handlePlayVideo, selectedVideo, index }) => {
             className="w-full h-full object-cover cursor-pointer"  // Corrected className
           />
         </a>
+        
 
         {/* Sekcja z tytułem filmu */}
         <div className="flex absolute bottom-0 pb-1 bg-black bg-opacity-90">
-          <a href={getVideoLink(video)} target="_blank" rel="noopener noreferrer">
+          <a href={getVideoLink(video)} target="_blank" rel="noopener noreferrer" className="flex flex-col">
             <p className="text-sm font-semibold text-gray-100 text-left hover:underline">
               {video.title}
             </p>
+            {video.genres && video.genres.filter(g => g !== "brak danych").length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-1">
+                {video.genres
+                  .filter(genre => genre !== "brak danych")
+                  .map((genre, idx) => (
+                    <span key={idx} className="bg-gray-700 text-gray-200 px-2 py-0.5 rounded text-xs">
+                      {genre}
+                    </span>
+                  ))}
+              </div>
+            )}
           </a>
         </div>
       </div>

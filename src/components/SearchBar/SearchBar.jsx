@@ -1,3 +1,5 @@
+import GenresBar from './GenresBar'; // Importujemy listę gatunków, jeśli jest potrzebna
+
 const SearchBar = ({
   searchTerm,
   setSearchTerm,
@@ -25,8 +27,11 @@ const SearchBar = ({
 
   return (
     <>
+        <GenresBar/>
       <div className="mb-4 p-2 flex items-center justify-center">
-        {/* Pasek wyszukiwania */}
+        <div className="gatunki">
+          
+        </div>
         <button
           onClick={handleNewestClick} // Zmieniamy na handleNewestClick, by resetować stronę
           className="ml-2 h-12 p-2 border border-gray-700 rounded flex items-center justify-center"
@@ -59,6 +64,7 @@ const SearchBar = ({
         <span className="text-blue-500"> podcasty</span>. 
         Wpisz tytuł audiobooka, serię książek lub nazwisko autora, aby szybko znaleźć interesujące Cię pozycje w naszej kolekcji.
       </h2>
+
     </>
   );
 };
