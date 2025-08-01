@@ -28,7 +28,7 @@ function App() {
   const [sortNewest, setSortNewest] = useState(true);
   const [authors, setAuthors] = useState([]); // Stan do przechowywania autorów
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 100; // Liczba filmów na stronę
+  const itemsPerPage = 256; // Liczba filmów na stronę
 
    const filteredVideos = useFilteredVideos(videos, debouncedSearchTerm, selectedPlatform, sortNewest, parseDate);
   const { paginatedItems: paginatedVideos, totalPages } = usePagination(
@@ -153,8 +153,9 @@ const handlePrevPage = () => {
       )}
       {!loading && (
         <>
-     <div className="flex flex-col md:flex-row gap-4 w-full max-w-7xl mx-auto min-h-[calc(100vh-64px)] flex-1">
+     <div className="flex flex-col md:flex-row gap-4 w-full min-h-[calc(100vh-64px)] flex-1">
   {/* Sidebar autorów */}
+
   <div className="w-full md:w-1/4 bg-gray-900 p-4 rounded-none md:rounded-l-lg shadow-lg flex flex-col h-auto md:h-full">
     <AuthorsList
       selectedPlatform={selectedPlatform}

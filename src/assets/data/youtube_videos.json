@@ -40790,7 +40790,18 @@
       "brak danych"
     ]
   },
-  
+  {
+    "title": "czarna góra",
+    "link": "https://www.youtube.com/watch?v=3TZGjYRgqjE",
+    "date": "16.05.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
   {
     "title": "Upadek Númenoru - J.R.R. Tolkien |",
     "link": "https://www.youtube.com/watch?v=1Yc9SD35ZEY",
@@ -47011,7 +47022,7 @@
   {
     "title": "Ubik - Philip K. Dick |",
     "link": "https://www.youtube.com/watch?v=-_aFsdZBWs4",
-    "date": "10.11.2024",
+    "date": "30.11.2024",
     "platform": "youtube",
     "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
     "channel_name": "Bart Cosmochrome Audiobooki YT",
@@ -47023,7 +47034,7 @@
   {
     "title": "Kukułcze jajo Część 2/2 - Clifford Stoll",
     "link": "https://www.youtube.com/watch?v=UlYRgL3HcXg",
-    "date": "10.11.2024",
+    "date": "30.11.2024",
     "platform": "youtube",
     "Link": "https://www.youtube.com/@zRunesphereAudiobooki",
     "channel_name": "Bart Runesphere Audiobooki YT",
@@ -47037,7 +47048,7 @@
   {
     "title": "Kukułcze jajo Część 1/2 - Clifford Stoll",
     "link": "https://www.youtube.com/watch?v=X0WGXqhifEs",
-    "date": "10.11.2024",
+    "date": "30.11.2024",
     "platform": "youtube",
     "Link": "https://www.youtube.com/@zRunesphereAudiobooki",
     "channel_name": "Bart Runesphere Audiobooki YT",
@@ -50979,7 +50990,7 @@
   {
     "title": "Więźniowie czasu, Cykl: Saga o Ludziach Lodu (tom 40) - Margit Sandemo",
     "link": "https://www.youtube.com/watch?v=_wbBCSDcBjQ",
-    "date": "29.05.00.2025",
+    "date": "30.05.2025",
     "platform": "youtube",
     "Link": "https://www.youtube.com/@zRunesphereAudiobooki",
     "channel_name": "Bart Runesphere Audiobooki YT",
@@ -50993,7 +51004,7 @@
   {
     "title": "Ciemność, Cykl: Saga o Królestwie Światła (tom 15) - Margit Sandemo",
     "link": "https://www.youtube.com/watch?v=vHFw_Ecm1NU",
-    "date": "29.05.2025",
+    "date": "30.02.2025",
     "platform": "youtube",
     "Link": "https://www.youtube.com/@zRunesphereAudiobooki",
     "channel_name": "Bart Runesphere Audiobooki YT",
@@ -51960,7 +51971,7 @@
   {
     "title": "Star Wars. Cień Sithów Część 2/2 , Gwiezdne Wojny - Adam Christopher",
     "link": "https://www.youtube.com/watch?v=ZvZpaSauoI0",
-    "date": "lip.00.2025",
+    "date": "30.07.2025",
     "platform": "youtube",
     "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
     "channel_name": "Bart Cosmochrome Audiobooki YT",
@@ -51973,7 +51984,7 @@
   {
     "title": "Star Wars. Cień Sithów Część 1/2 , Gwiezdne Wojny - Adam Christopher",
     "link": "https://www.youtube.com/watch?v=KVlafeN920k",
-    "date": "lip.00.2025",
+    "date": "30.07.2025",
     "platform": "youtube",
     "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
     "channel_name": "Bart Cosmochrome Audiobooki YT",
@@ -52051,6 +52062,552 @@
       "historyczna",
       "fantasy",
       "powieść przygodowa"
+    ]
+  },
+  {
+    "title": "Dzikowy skarb Część 2/2, Cykl: Powieści Piastowskie (tom 1) - Karol Bunsch",
+    "link": "https://www.youtube.com/watch?v=PDiD9XxGk9I",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Dzikowy skarb Część 1/2, Cykl: Powieści Piastowskie (tom 1) - Karol Bunsch",
+    "link": "https://www.youtube.com/watch?v=ZZVKFDfTtb8",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Ojciec i syn Część 2/2, Cykl: Powieści Piastowskie (tom 2)- Karol Bunsch | powieść historyczna",
+    "link": "https://www.youtube.com/watch?v=QlEeGABsmao",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "Historia",
+      "obyczajowa"
+    ]
+  },
+  {
+    "title": "Ojciec i syn Część 1/2, Cykl: Powieści Piastowskie (tom 2)- Karol Bunsch | powieść historyczna",
+    "link": "https://www.youtube.com/watch?v=beKrzcpWnyk",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "Historia",
+      "obyczajowa"
+    ]
+  },
+  {
+    "title": "Bez ryzyka i inne opowiadania - Lee Child |",
+    "link": "https://www.youtube.com/watch?v=3OZPUzP_pmI",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "fantasy",
+      "horror"
+    ]
+  },
+  {
+    "title": "W stronę Swanna Część 1/2, Cykl: W poszukiwaniu straconego czasu (tom 1) - Marcel Proust |",
+    "link": "https://www.youtube.com/watch?v=ksNnL91lHv8",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "W stronę Swanna Część 2/2, Cykl: W poszukiwaniu straconego czasu (tom 1) - Marcel Proust |",
+    "link": "https://www.youtube.com/watch?v=kXzDBlqJN7A",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "W cieniu zakwitających dziewcząt Część 3/3, Cykl: W poszukiwaniu straconego. (tom 2) - Marcel Proust",
+    "link": "https://www.youtube.com/watch?v=vSZ5MstIrYE",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "W cieniu zakwitających dziewcząt Część 2/3, Cykl: W poszukiwaniu straconego. (tom 2) - Marcel Proust",
+    "link": "https://www.youtube.com/watch?v=7p2k9pgn2Pw",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "W cieniu zakwitających dziewcząt Część 1/3, Cykl: W poszukiwaniu straconego. (tom 2) - Marcel Proust",
+    "link": "https://www.youtube.com/watch?v=yFfFtcWSDEI",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Jaskółki z Czarnobyla Część 2/2 - Morgan Audic |",
+    "link": "https://www.youtube.com/watch?v=2tQWeolJ6XU",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Jaskółki z Czarnobyla Część 1/2 - Morgan Audic |",
+    "link": "https://www.youtube.com/watch?v=oV24nI-eoio",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Król Część 2/2,Cykl: Król (tom 1) - Szczepan Twardoch |",
+    "link": "https://www.youtube.com/watch?v=mi6bbwpoU24",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@Nebulounge",
+    "channel_name": "Bart NebulaBytes Audiobooki PL",
+    "channel_image": "nebula.jpg",
+    "genres": [
+      "literatura piękna",
+      "współczesna"
+    ]
+  },
+  {
+    "title": "Król Część 1/2,Cykl: Król (tom 1) - Szczepan Twardoch |",
+    "link": "https://www.youtube.com/watch?v=pegs_WxdNnI",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@Nebulounge",
+    "channel_name": "Bart NebulaBytes Audiobooki PL",
+    "channel_image": "nebula.jpg",
+    "genres": [
+      "literatura piękna",
+      "współczesna"
+    ]
+  },
+  {
+    "title": "Regiel - Michał Smialak",
+    "link": "https://www.youtube.com/watch?v=JDmLfE5QMsw",
+    "date": "24.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@Nebulounge",
+    "channel_name": "Bart NebulaBytes Audiobooki PL",
+    "channel_image": "nebula.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Transmigracja Timothy'ego Archera, Cykl: Trylogia Valisa (tom 3) | Philip K. Dick",
+    "link": "https://www.youtube.com/watch?v=pe9UuY7oGbA",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "science fiction",
+      "dystopia",
+      "filozofia"
+    ]
+  },
+  {
+    "title": "Jestem legendą Część 3/3 - Richard Matheson",
+    "link": "https://www.youtube.com/watch?v=b99LL8bTFCU",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "fantasy",
+      "sensacyjna"
+    ]
+  },
+  {
+    "title": "Jestem legendą Część 2/3 - Richard Matheson",
+    "link": "https://www.youtube.com/watch?v=TGv3Ta9yIkU",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "fantasy",
+      "sensacyjna"
+    ]
+  },
+  {
+    "title": "Jestem legendą Część 1/3 - Richard Matheson",
+    "link": "https://www.youtube.com/watch?v=mGr0xV9pLd8",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "fantasy",
+      "sensacyjna"
+    ]
+  },
+  {
+    "title": "Inna ziemia - Philip K. Dick",
+    "link": "https://www.youtube.com/watch?v=l_vWbNfENmQ",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "science fiction",
+      "dystopia",
+      "filozofia"
+    ]
+  },
+  {
+    "title": "Gwiazdy moim przeznaczeniem - Alfred Bester | czyta Marcin Stec",
+    "link": "https://www.youtube.com/watch?v=9F6UVS4bYTs",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "science fiction"
+    ]
+  },
+  {
+    "title": "Cudowna broń, Seria: Dzieła wybrane Philipa K. Dicka - Philip K. Dick |",
+    "link": "https://www.youtube.com/watch?v=CA7xxy-g-0c",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "science fiction",
+      "dystopia",
+      "filozofia"
+    ]
+  },
+  {
+    "title": "Tęsknota, Cykl: Saga o Królestwie Światła (tom 18) - Margit Sandemo |",
+    "link": "https://www.youtube.com/watch?v=cW5UC5oZkTU",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@zRunesphereAudiobooki",
+    "channel_name": "Bart Runesphere Audiobooki YT",
+    "channel_image": "runesphere.jpg",
+    "genres": [
+      "fantasy",
+      "romans",
+      "historical fantasy"
+    ]
+  },
+  {
+    "title": "Móri i Ludzie Lodu, Cykl: Saga o Królestwie Światła (tom 2) - Margit Sandemo |",
+    "link": "https://www.youtube.com/watch?v=-pBnhXcV5m0",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@zRunesphereAudiobooki",
+    "channel_name": "Bart Runesphere Audiobooki YT",
+    "channel_image": "runesphere.jpg",
+    "genres": [
+      "fantasy",
+      "romans",
+      "historical fantasy"
+    ]
+  },
+  {
+    "title": "Zaklęte miasto i inne opowiadania - Jacek Piekara",
+    "link": "https://www.youtube.com/watch?v=bVlpxOocbIg",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "fantasy",
+      "horror"
+    ]
+  },
+  {
+    "title": "\"Wiedźmin: Dom ze Szkła\" (słuchowisko) | #komiks",
+    "link": "https://www.youtube.com/watch?v=pj144jfdfqo",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Ciosy zagłady - Nayler Ray | Science Fiction",
+    "link": "https://www.youtube.com/watch?v=gK8l5Xl8yU0",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "kryminał",
+      "thriller"
+    ]
+  },
+  {
+    "title": "Chinopol Część 2/2 - Aleksandra Sadura | science fiction",
+    "link": "https://www.youtube.com/watch?v=24T-kQFIY0s",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Chinopol Część 1/2 - Aleksandra Sadura | science fiction",
+    "link": "https://www.youtube.com/watch?v=qHYwrmfK1oc",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCLe28s6B3JuF-bFMd8dJ-1g",
+    "channel_name": "Bart Modern Audiobooki YT",
+    "channel_image": "modern.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Vita nostra Część 2/2 - Marina Diaczenko, Siergiej Diaczenko",
+    "link": "https://www.youtube.com/watch?v=EPHt3wQ-INE",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Vita nostra Część 1/2 - Marina Diaczenko, Siergiej Diaczenko",
+    "link": "https://www.youtube.com/watch?v=tvnYdQsT01A",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "brak danych"
+    ]
+  },
+  {
+    "title": "Stacja: Nowy Świat, Cykl: Opowieści z postapokaliptycznej aglomeracji (tom 2) Bartek Biedrzycki",
+    "link": "https://www.youtube.com/watch?v=3RYpKpP8jTM",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "science fiction"
+    ]
+  },
+  {
+    "title": "Quietus Część 2/2 - Inglot Jacek",
+    "link": "https://www.youtube.com/watch?v=5Z4Xf2dxwKA",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "science fiction"
+    ]
+  },
+  {
+    "title": "Quietus Część 1/2 - Inglot Jacek",
+    "link": "https://www.youtube.com/watch?v=k5te7UZvkdQ",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "science fiction" 
+    ]
+  },
+  {
+    "title": "Następne 100 lat. Prognoza na XXI wiek - George Friedman",
+    "link": "https://www.youtube.com/watch?v=e4HzAY8sWVI",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      ""
+    ]
+  },
+  {
+    "title": "Kompleks 7215, Cykl: Opowieści z postapokaliptycznej aglomeracji (tom 1) - Bartek Biedrzycki",
+    "link": "https://www.youtube.com/watch?v=1ytxRgr3JA4",
+    "date": "31.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/channel/UCo7WdbCV2Th_NLNL3UyGuug",
+    "channel_name": "Bart Stories Audiobooki YT ",
+    "channel_image": "stories.jpg",
+    "genres": [
+      "science fiction"
+    ]
+  },
+  {
+    "title": "Boża inwazja, Cykl: Trylogia Valisa (tom 2) - Philip K. Dick |",
+    "link": "https://www.youtube.com/watch?v=oZYEv3LC0Ys",
+    "date": "30.08.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "science fiction",
+      "dystopia",
+      "filozofia"
+    ]
+  },
+  {
+    "title": "Ślepowidzenie, Cykl: Ślepowidzenie (tom 1) - Peter Watts |",
+    "link": "https://www.youtube.com/watch?v=bm2aE4ZiXD4",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "science fiction",
+      "hard sci-fi"
+    ]
+  },
+  {
+    "title": "Jaksa Część 2/2, Cykl: Jaksa (tom 0.5) - Jacek Komuda |",
+    "link": "https://www.youtube.com/watch?v=HgU1VJJFTYk",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "historyczna",
+      "fantasy",
+      "powieść przygodowa"
+    ]
+  },
+  {
+    "title": "Jaksa Część 1/2, Cykl: Jaksa (tom 0.5) - Jacek Komuda |",
+    "link": "https://www.youtube.com/watch?v=uyBQ8bbbLLw",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "historyczna",
+      "fantasy",
+      "powieść przygodowa"
+    ]
+  },
+  {
+    "title": "Echopraksja, Część 2/2, Cykl: Ślepowidzenie (tom 2) - Peter Watts |",
+    "link": "https://www.youtube.com/watch?v=tngu6M2IPhU",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "science fiction",
+      "hard sci-fi"
+    ]
+  },
+  {
+    "title": "Echopraksja, Część 1/2, Cykl: Ślepowidzenie (tom 2) - Peter Watts |",
+    "link": "https://www.youtube.com/watch?v=wHWZe8CzjZE",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "science fiction",
+      "hard sci-fi"
+    ]
+  },
+  {
+    "title": "Conan. Pani Śmierć - Jacek Piekara",
+    "link": "https://www.youtube.com/watch?v=ixOACGyygdA",
+    "date": "30.07.2025",
+    "platform": "youtube",
+    "Link": "https://www.youtube.com/@yCosmochromeAudiobooki",
+    "channel_name": "Bart Cosmochrome Audiobooki YT",
+    "channel_image": "cosmochrome.jpg",
+    "genres": [
+      "fantasy",
+      "alternatywna historia"
     ]
   }
 ]
