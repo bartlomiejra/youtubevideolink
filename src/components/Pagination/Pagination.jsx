@@ -11,12 +11,10 @@ const Pagination = ({ currentPage, totalPages, onPrevPage, onNextPage }) => {
       >
         Poprzednia
       </button>
-
       {/* Numer strony */}
       <span className="text-gray-200">
         Strona {currentPage} z {totalPages}
       </span>
-
       {/* Przycisk następnej strony */}
       <button
         onClick={onNextPage}

@@ -24,7 +24,6 @@ const SearchBar = ({
     handleSortRandom();
     setCurrentPage(1); // Resetujemy stronę na 1 po kliknięciu przycisku
   };
-
   return (
     <>
         <GenresBar/>
