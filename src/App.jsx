@@ -58,17 +58,30 @@ const handleSearchChange = (event) => {
       ...youtubeVideosData,
       ...podcastsData,
     ];
-    setVideos(combinedVideos);
-    setInitialVideos(combinedVideos);
+
+    // Znajdź duplikaty
+    const duplicates = findDuplicates(combinedVideos);
+    console.log(`Liczba duplikatów: ${duplicates.length}`);
+    console.log("Duplikaty:", duplicates);
+
+    // Usuń duplikaty
+    const uniqueVideos = combinedVideos.filter(
+      (video, index, self) =>
+        index === self.findIndex(v => v.link === video.link)
+    );
+
+    setVideos(uniqueVideos);
+    setInitialVideos(uniqueVideos);
     setLoading(false);
+
     // Przygotowanie listy autorów
     const authorSet = new Set();
-    combinedVideos.forEach(video => {
+    uniqueVideos.forEach(video => {
       if (video.author) {
         authorSet.add(video.author);
       }
     });
-    setAuthors(Array.from(authorSet)); // Przechowuj unikalnych autorów
+    setAuthors(Array.from(authorSet));
   }, []);
 
 
@@ -192,4 +205,18 @@ const handlePrevPage = () => {
     </div>
   );
 }
+
+const findDuplicates = (videos) => {
+  const seen = new Set();
+  const duplicates = [];
+  videos.forEach(video => {
+    if (seen.has(video.link)) {
+      duplicates.push(video);
+    } else {
+      seen.add(video.link);
+    }
+  });
+  return duplicates;
+};
+
 export default App;
